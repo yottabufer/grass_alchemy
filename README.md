@@ -61,5 +61,5 @@ backend/scripts/run_pytest.sh
 ```python
 http://localhost:8000/api/docs
 ```
-PS. Тесты проходят, может успею исправить предупреждения для Pydantic V2:
+PS. Тесты проходят
 ![pytest_ok](pytest_ok.png)<br/>

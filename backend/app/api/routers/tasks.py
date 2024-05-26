@@ -34,7 +34,7 @@ async def read_task(task_id: int, session: AsyncSession = Depends(get_db_session
 
 @router.post('/create', response_model=TaskInDB, status_code=201)
 async def create_task(task: TaskBase, session: AsyncSession = Depends(get_db_session)):
-    new_task = Task(**task.dict())
+    new_task = Task(**task.model_dump())
     # Добавляем новую задачу в сессию базы данных
     session.add(new_task)
     # Фиксируем изменения в базе данных
