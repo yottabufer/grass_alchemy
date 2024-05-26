@@ -33,4 +33,3 @@ services:
 
 volumes:
   db-data:
-  test-db-data:
