@@ -13,16 +13,16 @@ async def lifespan(app: FastAPI):
         await sessionmanager.close()
 
 
-app = FastAPI(lifespan=lifespan, title=settings.project_name, docs_url="/api/docs")
+app = FastAPI(lifespan=lifespan, title=settings.project_name, docs_url='/api/docs')
 
 
 # Для первичной проверки, что всё работает, до миграций алембика
-@app.get("/")
+@app.get('/')
 async def root():
-    return {"message": "Hello World"}
+    return {'message': 'Hello World'}
 
 
 app.include_router(tasks_router)
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", reload=True, port=8000)
+if __name__ == '__main__':
+    uvicorn.run('main:app', host='0.0.0.0', reload=True, port=8000)

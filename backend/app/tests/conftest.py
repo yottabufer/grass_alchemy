@@ -51,17 +51,12 @@ def run_migrations(connection: Connection):
 
 @pytest.fixture(scope="session", autouse=True)
 async def setup_database():
-    # Run alembic migrations on test DB
     async with sessionmanager.connect() as connection:
         await connection.run_sync(run_migrations)
-
     yield
-
-    # Teardown
     await sessionmanager.close()
 
 
-# Each test function is a clean slate
 @pytest.fixture(scope="function", autouse=True)
 async def transactional_session():
     async with sessionmanager.session() as session:
@@ -69,7 +64,7 @@ async def transactional_session():
             await session.begin()
             yield session
         finally:
-            await session.rollback()  # Rolls back the outer transaction
+            await session.rollback()
 
 
 @pytest.fixture(scope="function")
@@ -80,6 +75,11 @@ async def db_session(transactional_session):
 @pytest.fixture(scope="function", autouse=True)
 async def session_override(app, db_session):
     async def get_db_session_override():
-        yield db_session[0]
+        yield db_session
 
     app.dependency_overrides[get_db_session] = get_db_session_override
+
+
+@pytest.fixture(scope="session")
+def anyio_backend():
+    return 'asyncio'
