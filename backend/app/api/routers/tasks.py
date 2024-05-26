@@ -49,3 +49,8 @@ async def create_task(task: TaskCreate, session: AsyncSession = Depends(get_db_s
     await session.refresh(new_task)
     # Возвращаем созданную задачу
     return new_task
+
+
+@router.get("/")
+async def root():
+    return {"message": "Hello World"}

@@ -14,20 +14,6 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data:cached
 
-  test-postgres:
-    image: postgres:15-alpine
-    restart: always
-    environment:
-      POSTGRES_USER: test-user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: test_db
-    ports:
-      - 5434:5432 # Use a different port to avoid conflicts with the main database
-    expose:
-      - "5434" # Exposing the different port for clarity
-    volumes:
-      - test-db-data:/var/lib/postgresql/data:cached
-
   backend:
     build:
       context: backend
@@ -44,19 +30,6 @@ services:
       - "postgres"
     ports:
       - 8000:8000
-
-  # frontend:
-  #   build:
-  #     context: frontend
-  #     dockerfile: Dockerfile
-  #   stdin_open: true
-  #   volumes:
-  #     - "./frontend:/app:cached"
-  #     - "./frontend/node_modules:/app/node_modules:cached"
-  #   environment:
-  #     - NODE_ENV=development
-  #   ports:
-  #     - 3000:3000
 
 volumes:
   db-data:
