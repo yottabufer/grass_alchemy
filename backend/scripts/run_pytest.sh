@@ -1,3 +1,3 @@
 #!/bin/bash
-docker compose exec backend alembic upgrade head
+docker compose exec backend pytest
 read -p 'Press Enter to continue...'

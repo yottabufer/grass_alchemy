@@ -53,8 +53,13 @@ backend/scripts/autogenerate_migrations.sh "grass"
 ```python
 backend/scripts/run_migrations.sh
 ```
-4. Посмотреть, что всё работает 
+4. Запустить pytest
+```python
+backend/scripts/run_pytest.sh
+```
+5. Посмотреть, что всё работает 
 ```python
 http://localhost:8000/api/docs
 ```
-PS. Пока тесты работают, только в аппке https://github.com/yottabufer/grass, т.к. я не могу подружить ассинхронный pytest 
+PS. Тесты проходят, может успею исправить предупреждения для Pydantic V2:
+![pytest_ok](pytest_ok.png)<br/>

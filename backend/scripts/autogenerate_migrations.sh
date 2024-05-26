@@ -4,3 +4,4 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 docker compose exec backend alembic revision --autogenerate -m "$1"
+read -p 'Press Enter to continue...'
