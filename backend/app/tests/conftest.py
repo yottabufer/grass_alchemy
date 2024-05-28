@@ -1,6 +1,5 @@
 import asyncio
 from contextlib import ExitStack
-
 import pytest
 from alembic.config import Config
 from alembic.migration import MigrationContext
@@ -9,9 +8,9 @@ from alembic.script import ScriptDirectory
 from app.main import app as actual_app
 from asyncpg import Connection
 from fastapi.testclient import TestClient
-
 from app.config import settings
-from app.database import Base, sessionmanager, get_db_session
+from app.database import sessionmanager, get_db_session
+from app.models import Base
 
 
 @pytest.fixture(autouse=True)
@@ -82,4 +81,4 @@ async def session_override(app, db_session):
 
 @pytest.fixture(scope="session")
 def anyio_backend():
-    return 'asyncio'
+    return "asyncio"

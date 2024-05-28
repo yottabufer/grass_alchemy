@@ -8,9 +8,6 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
 
 
 class DatabaseSessionManager:
@@ -57,6 +54,7 @@ class DatabaseSessionManager:
             await session.close()
 
 
+# Инициализируем экземпляр DatabaseSessionManager с настройками БД
 sessionmanager = DatabaseSessionManager(settings.database_url, {"echo": settings.echo_sql})
 
 

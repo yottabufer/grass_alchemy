@@ -1,3 +1,6 @@
-# need access to this before importing models
-from app.database import Base
+__all__ = (
+    "Base",
+    "Task",
+)
 from .task import Task
+from .base import Base
